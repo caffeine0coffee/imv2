@@ -44,3 +44,5 @@
 build/
 vcpkg_installed/
 .idea/
+compile_commands.json
+.cache/
