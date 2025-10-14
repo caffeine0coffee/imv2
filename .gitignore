@@ -42,4 +42,5 @@
 
 # Build directory
 build/
-.idea
+vcpkg_installed/
+.idea/

@@ -1,1 +1,6 @@
-{}
+{
+  "dependencies": [
+    "fmt",
+    "vk-bootstrap"
+  ]
+}
