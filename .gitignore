@@ -41,8 +41,12 @@
 *.dwo
 
 # Build directory
-build/
+build_develop/
+build_debug/
+build_release/
+
 vcpkg_installed/
 .idea/
-compile_commands.json
 .cache/
+
+compile_commands.json
