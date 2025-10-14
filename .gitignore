@@ -44,4 +44,9 @@
 build_develop/
 build_debug/
 build_release/
+
+vcpkg_installed/
+.idea/
+.cache/
+
 compile_commands.json
