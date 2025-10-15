@@ -1,0 +1,13 @@
+Checks: >
+  -*,
+  bugprone-*,
+  cppcoreguidelines-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  google-*,
+  misc-*,
+  -*-use-trailing-return-type,
+
+FormatStyle: file
