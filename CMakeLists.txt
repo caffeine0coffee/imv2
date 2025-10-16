@@ -8,5 +8,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB_RECURSE imv_sources src/*.cpp)
 add_executable(imv2 ${imv_sources})
 
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(imv2 PRIVATE spdlog::spdlog)
+
 find_package(Vulkan REQUIRED)
 target_link_libraries(imv2 PRIVATE Vulkan::Vulkan)
