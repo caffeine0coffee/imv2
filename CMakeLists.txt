@@ -8,6 +8,10 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_definitions(-DDEBUG)
+endif()
+
 file(GLOB_RECURSE imv_sources src/*.cpp)
 add_executable(imv2 ${imv_sources})
 target_include_directories(imv2 PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")

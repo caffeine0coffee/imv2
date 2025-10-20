@@ -1,23 +1,14 @@
 #include "src/render_context.hpp"
 
 #include <VkBootstrap.h>
-
-#include <memory>
-#include <mutex>
-
-std::mutex Context::instance_mutex_{};
-std::unique_ptr<Context> Context::instance_{};
+#include <spdlog/spdlog.h>
 
 const Context* Context::Instance() {
-  const auto lock = std::lock_guard(instance_mutex_);
-
-  if (instance_ == nullptr) {
-    instance_ = std::unique_ptr<Context>(new Context());
-  }
-  return instance_.get();
+  static Context instance;
+  return &instance;
 }
 
-Context::Context() {
+void Context::init_() {
   vkb::InstanceBuilder builder;
   auto build_result = builder.set_app_name("imv2")
                           .request_validation_layers(true)
@@ -28,6 +19,12 @@ Context::Context() {
   }
 
   vk_instance_ = build_result.value();
+  spdlog::trace("Vulkan instance created");
 
   // TODO(caffeine): create PhysicalDevice, Device, etc...
+}
+
+void Context::destroy_() {
+  vk_instance_.destroy();
+  spdlog::trace("Vulkan instance destroyed");
 }
