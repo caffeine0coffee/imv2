@@ -1,6 +1,13 @@
-#include <iostream>
+#include <spdlog/spdlog.h>
+
+#include "src/render_context.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+  spdlog::info("Hello, World!");
+
+  const auto *const context = Context::Instance();
+  const auto& vk_instance = context->vk_instance();
+  spdlog::info("Context created!!!");
+
+  return 0;
 }
