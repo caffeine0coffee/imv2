@@ -49,6 +49,138 @@
         }
       }
     },
+    "cppcheck@2.18.3": {
+      "last_modified": "2025-10-07T08:41:47Z",
+      "resolved": "github:NixOS/nixpkgs/bce5fe2bb998488d8e7e7856315f90496723793c#cppcheck",
+      "source": "devbox-search",
+      "version": "2.18.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ki3hvisy4nxx58igd74jlkrd6dqhhv4y-cppcheck-2.18.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/6s6s78b4qwn1ki2n9rjnxm4bwbhpwgpb-cppcheck-2.18.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ki3hvisy4nxx58igd74jlkrd6dqhhv4y-cppcheck-2.18.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qksr8f3i35qlrlad5c2w1xdkl1xi7kpl-cppcheck-2.18.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/kmgw5ha0wx2djarf6bxb5qrvis6615mf-cppcheck-2.18.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/qksr8f3i35qlrlad5c2w1xdkl1xi7kpl-cppcheck-2.18.3"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/km4k94d377z0dnljln54wdgbmi7kwsrq-cppcheck-2.18.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/s5ii4g0v1avhxzssxi32g3vcni43cik2-cppcheck-2.18.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/km4k94d377z0dnljln54wdgbmi7kwsrq-cppcheck-2.18.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yr22jpid0dwqlqyayd2gzg529wysvh9d-cppcheck-2.18.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/54qhamddfc2c0rak6ky0ldci23880rn7-cppcheck-2.18.3-man",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yr22jpid0dwqlqyayd2gzg529wysvh9d-cppcheck-2.18.3"
+        }
+      }
+    },
+    "cpplint@2.0.2": {
+      "last_modified": "2025-10-07T08:41:47Z",
+      "resolved": "github:NixOS/nixpkgs/bce5fe2bb998488d8e7e7856315f90496723793c#cpplint",
+      "source": "devbox-search",
+      "version": "2.0.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/a66zavpwq02xs3qilqi06a37h2ai9sjg-cpplint-2.0.2",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/6s44kgkq2qpji3ns5hw3m0bbjlcvlbkz-cpplint-2.0.2-dist"
+            }
+          ],
+          "store_path": "/nix/store/a66zavpwq02xs3qilqi06a37h2ai9sjg-cpplint-2.0.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rp8yx9lpqg7hxsdaw5a6bhxb46s0pi8y-cpplint-2.0.2",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/r60qr51hxd0icf77qjqji914ibnhp5dw-cpplint-2.0.2-dist"
+            }
+          ],
+          "store_path": "/nix/store/rp8yx9lpqg7hxsdaw5a6bhxb46s0pi8y-cpplint-2.0.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4xh4hklcs4x6lky8gw0ankisvx9vqbvs-cpplint-2.0.2",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/8ik7hz96vfazsg48a5sfc67ck0lpxxqm-cpplint-2.0.2-dist"
+            }
+          ],
+          "store_path": "/nix/store/4xh4hklcs4x6lky8gw0ankisvx9vqbvs-cpplint-2.0.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/v6jcylf112rg6bry85jig02w7y19cjb9-cpplint-2.0.2",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/f9fbff15zdmd422l4hynm06qwl3kzdni-cpplint-2.0.2-dist"
+            }
+          ],
+          "store_path": "/nix/store/v6jcylf112rg6bry85jig02w7y19cjb9-cpplint-2.0.2"
+        }
+      }
+    },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2025-10-20T04:25:18Z",
       "resolved": "github:NixOS/nixpkgs/87848bf0cc4f87717fc813a4575f07330c3e743c?lastModified=1760934318&narHash=sha256-%2FoUYsC0lUCBory65VK%2BUHqCCsCspbL1Vgfcf1KUYqVw%3D"
