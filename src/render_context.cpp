@@ -1,6 +1,7 @@
 #include "src/render_context.hpp"
 
 #include <VkBootstrap.h>
+#include <fmt/format.h>
 #include <spdlog/spdlog.h>
 
 const Context* Context::Instance() {
@@ -40,7 +41,9 @@ void Context::select_vulkan_physical_device_() {
   auto select_result = selector.select();
 
   if (!select_result) {
-    throw std::runtime_error("Failed to select physical device");
+    const auto& error = select_result.error();
+    throw std::runtime_error(
+        fmt::format("Failed to select physical device: {}", error.message()));
   }
 
   vkb_physical_device_ = select_result.value();
