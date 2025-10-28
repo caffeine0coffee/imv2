@@ -2,6 +2,8 @@
   "dependencies": [
     "fmt",
     "vk-bootstrap",
-    "vulkan"
+    "vulkan",
+    "spdlog",
+    "glfw3"
   ]
 }
