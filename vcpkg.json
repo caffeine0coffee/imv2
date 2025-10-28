@@ -3,6 +3,7 @@
     "fmt",
     "vk-bootstrap",
     "vulkan",
-    "spdlog"
+    "spdlog",
+    "glfw3"
   ]
 }

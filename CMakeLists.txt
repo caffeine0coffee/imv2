@@ -24,3 +24,6 @@ target_link_libraries(imv2 PRIVATE vk-bootstrap::vk-bootstrap vk-bootstrap::vk-b
 
 find_package(Vulkan REQUIRED)
 target_link_libraries(imv2 PRIVATE Vulkan::Vulkan)
+
+find_package(glfw3 CONFIG REQUIRED)
+target_link_libraries(imv2 PRIVATE glfw)
