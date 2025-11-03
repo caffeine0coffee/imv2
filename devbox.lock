@@ -240,6 +240,90 @@
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2025-10-20T04:25:18Z",
       "resolved": "github:NixOS/nixpkgs/87848bf0cc4f87717fc813a4575f07330c3e743c?lastModified=1760934318&narHash=sha256-%2FoUYsC0lUCBory65VK%2BUHqCCsCspbL1Vgfcf1KUYqVw%3D"
+    },
+    "pkg-config@latest": {
+      "last_modified": "2025-10-07T08:41:47Z",
+      "resolved": "github:NixOS/nixpkgs/bce5fe2bb998488d8e7e7856315f90496723793c#pkg-config",
+      "source": "devbox-search",
+      "version": "0.29.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lzxb7hfq1md81mwh8kg9259va4svb0gd-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/79sdaira0i3lmabrpfh32nh29wxszj6d-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/3fywg6a3chplmkk08jzwgqivskqlsp8a-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/lzxb7hfq1md81mwh8kg9259va4svb0gd-pkg-config-wrapper-0.29.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/c24kkf2c8widzv6psrqx2wcjl2vbq2rc-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/9v37s7k2ck5fkfqk19s9yf5dhqb9ww54-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/hgw3ig10nl3gjr4jqvsy676yhzsqd2c7-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/c24kkf2c8widzv6psrqx2wcjl2vbq2rc-pkg-config-wrapper-0.29.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qdb4f8v27h6s8nwkn37375kyjdgpf1rh-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/i46hkymbldralalwmzh5b44agflfp218-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/17dd5yd00fi4wivhiybm8ziin6fsfj36-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/qdb4f8v27h6s8nwkn37375kyjdgpf1rh-pkg-config-wrapper-0.29.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k9s1w95rqfr14lb5xms1lwzrq1yiinzz-pkg-config-wrapper-0.29.2",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/0pqkzamsg4s9hlk7gxpib7wir23gc7zg-pkg-config-wrapper-0.29.2-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/36k9crw0xpwdzy8xyf4f6w8py10r442d-pkg-config-wrapper-0.29.2-doc"
+            }
+          ],
+          "store_path": "/nix/store/k9s1w95rqfr14lb5xms1lwzrq1yiinzz-pkg-config-wrapper-0.29.2"
+        }
+      }
     }
   }
 }

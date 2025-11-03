@@ -4,7 +4,8 @@
     "clang-tools@21.1.1",
     "cpplint@2.0.2",
     "cppcheck@2.18.3",
-    "cmake@4.1.1"
+    "cmake@4.1.1",
+    "pkg-config@latest"
   ],
   "shell": {
     "init_hook": [
