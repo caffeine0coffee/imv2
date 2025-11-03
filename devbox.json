@@ -4,7 +4,23 @@
     "cpplint": "2.0.2",
     "cppcheck": "2.18.3",
     "cmake": "4.1.1",
-    "pkg-config": "latest"
+    "pkg-config": "latest",
+    "xorg.libXinerama": {
+        "version": "latest",
+        "platforms": ["x86_64-linux", "aarch64-linux"]
+    },
+    "xorg.libXcursor": {
+        "version": "latest",
+        "platforms": ["x86_64-linux", "aarch64-linux"]
+    },
+    "xorg.libX11": {
+        "version": "latest",
+        "platforms": ["x86_64-linux", "aarch64-linux"]
+    },
+    "libGLU": {
+        "version": "latest",
+        "platforms": ["x86_64-linux", "aarch64-linux"]
+    }
   },
   "shell": {
     "init_hook": [
