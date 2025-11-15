@@ -21,11 +21,6 @@ void Context::destroy_() {
 }
 
 void Context::create_vulkan_instance_() {
-  const auto& sysInfo = vkb::SystemInfo::get_system_info().value();
-  for (const auto& ext : sysInfo.available_extensions) {
-    spdlog::trace("Vulkan extension available: {}", ext.extensionName);
-  }
-
   vkb::InstanceBuilder builder;
   auto build_result = builder.set_app_name("imv2")
                           .request_validation_layers(true)
