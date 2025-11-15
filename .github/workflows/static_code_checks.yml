@@ -1,6 +1,7 @@
 name: static_code_checks
 on:
   push:
+  workflow_call:
 jobs:
   check:
     runs-on: ubuntu-latest
