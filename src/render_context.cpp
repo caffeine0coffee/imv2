@@ -29,7 +29,7 @@ void Context::create_vulkan_instance_() {
   vkb::InstanceBuilder builder;
   auto build_result = builder.set_app_name("imv2")
                           .request_validation_layers(true)
-                          .require_api_version(1, 4, 0)
+                          .require_api_version(1, 3, 0)
                           .build();
   if (!build_result) {
     const auto& error = build_result.error();
