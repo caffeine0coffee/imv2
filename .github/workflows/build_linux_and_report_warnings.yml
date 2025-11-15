@@ -1,7 +1,6 @@
 name: build_linux_and_report_warnings
 on:
-  push:
-  workflow_call:
+  pull_request:
 permissions:
   contents: read
   pull-requests: write
