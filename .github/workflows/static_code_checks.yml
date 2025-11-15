@@ -21,9 +21,9 @@ jobs:
       - name: Run cppcheck and report
         run: |
           export REVIEWDOG_GITHUB_API_TOKEN="${{ secrets.REVIEWDOG_GITHUB_TOKEN }}"
-          script/run_cppcheck_all.sh | reviewdog -efm="%f:%l:%c: %m" -name="cppcheck" -reporter=github-pr-review -level="warning"
+          script/run_cppcheck_all.sh | reviewdog -efm="%f:%l:%c: %m" -name="cppcheck" -reporter=github-pr-review -level="warning" -tee
 
       - name: Run cpplint and report
         run: |
           export REVIEWDOG_GITHUB_API_TOKEN="${{ secrets.REVIEWDOG_GITHUB_TOKEN }}"
-          script/run_cpplint_all.sh | reviewdog -efm="%f:%l: %m" -name="cpplint" -reporter=github-pr-review -level="warning"
+          script/run_cpplint_all.sh | reviewdog -efm="%f:%l: %m" -name="cpplint" -reporter=github-pr-review -level="warning" -tee
