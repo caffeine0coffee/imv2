@@ -20,7 +20,9 @@ jobs:
           reviewdog_version: latest
 
       - name: Run cppcheck and report
-        run: script/run_cppcheck_all.sh | reviewdog -efm="%f:%l:%c: %m" -name="cppcheck" -reporter="github-pr-check" -level="warning"
+        run: |
+          script/run_cppcheck_all.sh | reviewdog -efm="%f:%l:%c: %m" -name="cppcheck" -reporter="github-pr-check" -level="warning"
 
       - name: Run cpplint and report
-        run: script/run_cpplint_all.sh | reviewdog -efm="%f:%l: %m" -name="cpplint" -reporter="github-pr-check" -level="warning"
+        run: |
+          script/run_cpplint_all.sh | reviewdog -efm="%f:%l: %m" -name="cpplint" -reporter="github-pr-check" -level="warning"
