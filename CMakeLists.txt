@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
 
+if (UNIX AND NOT APPLE)
+    set(LINUX TRUE)
+endif ()
+
+if (NOT LINUX)
+    list(APPEND VCPKG_MANIFEST_FEATURES "build-with-vcpkg-vulkan")
+endif ()
 set(CMAKE_OSX_DEPLOYMENT_TARGET "13.3" CACHE STRING "MacOS Deployment target")
 
 project(imv2 VERSION 1.0.0 LANGUAGES CXX)

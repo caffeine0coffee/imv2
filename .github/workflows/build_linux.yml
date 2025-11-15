@@ -1,0 +1,31 @@
+name: build_linux
+on:
+  push:
+  workflow_call:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y \
+            ninja-build \
+            libvulkan-dev \
+            libxinerama-dev \
+            libxcursor-dev \
+            xorg-dev \
+            libglu1-mesa \
+            pkg-config
+
+      - name: CMake configuration
+        run: cmake --preset debug
+
+      - name: Build project
+        run: cmake --build --preset debug

@@ -1,0 +1,21 @@
+name: build_windows
+on:
+  push:
+  workflow_call:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Setup VisualStudio Dev Environment
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: CMake configuration
+        run: cmake --preset debug_windows
+
+      - name: Build project
+        run: cmake --build --preset debug_windows
