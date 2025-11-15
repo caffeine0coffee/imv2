@@ -1,12 +1,12 @@
 #!/bin/bash
 
-cppcheck \
+devbox run cppcheck "$@" \
     --enable=all \
     --std=c++20 \
-	--template="{file}:{line}:{column}: {severity}: {message}" \
 	--quiet \
 	--suppress=checkersReport \
 	--suppress=missingIncludeSystem \
+	--suppress=missingInclude \
     -i vcpkg \
     -i build_debug \
     -i build_develop \
