@@ -4,8 +4,6 @@
 # Note that all arguments passed to this script are ignored.
 # If you want to check a single file or integrate with an editor,
 # use run_cpplint.sh directly.
-#
-# [!] This script returns 0 regardless of cppcheck results to avoid CI failures.
 
 script_dir=$(readlink -f "$(dirname "$0")")
 project_dir=$(readlink -f "${script_dir}/..")
@@ -15,5 +13,3 @@ project_dir=$(readlink -f "${script_dir}/..")
 	--exclude='vcpkg' \
 	--recursive \
 	"${project_dir}"
-
-exit 0
