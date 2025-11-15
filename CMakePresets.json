@@ -11,6 +11,17 @@
       }
     },
     {
+      "name": "base_windows",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build_windows",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
       "name": "develop",
       "inherits": "base",
       "binaryDir": "${sourceDir}/build_develop",
@@ -28,6 +39,14 @@
       }
     },
     {
+      "name": "debug_windows",
+      "inherits": "base_windows",
+      "binaryDir": "${sourceDir}/build_debug_windows",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
       "name": "release",
       "inherits": "base",
       "binaryDir": "${sourceDir}/build_release",
@@ -38,16 +57,16 @@
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "base"
-    },
-    {
       "name": "develop",
       "configurePreset": "develop"
     },
     {
       "name": "debug",
       "configurePreset": "debug"
+    },
+    {
+      "name": "debug_windows",
+      "configurePreset": "debug_windows"
     },
     {
       "name": "release",
