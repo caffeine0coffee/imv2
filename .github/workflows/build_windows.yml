@@ -11,6 +11,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup VisualStudio Dev Environment
+        uses: ilammy/msvc-dev-cmd@v1
+
       - name: CMake configuration
         run: cmake --preset debug_windows
 
