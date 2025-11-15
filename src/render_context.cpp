@@ -21,13 +21,20 @@ void Context::destroy_() {
 }
 
 void Context::create_vulkan_instance_() {
+  const auto& sysInfo = vkb::SystemInfo::get_system_info().value();
+  for (const auto& ext : sysInfo.available_extensions) {
+    spdlog::trace("Vulkan extension available: {}", ext.extensionName);
+  }
+
   vkb::InstanceBuilder builder;
   auto build_result = builder.set_app_name("imv2")
                           .request_validation_layers(true)
                           .require_api_version(1, 4, 0)
                           .build();
   if (!build_result) {
-    throw std::runtime_error("Failed to create Vulkan instance");
+    const auto& error = build_result.error();
+    throw std::runtime_error(
+        fmt::format("Failed to create Vulkan instance: {}", error.message()));
   }
 
   vkb_instance_ = build_result.value();
@@ -36,9 +43,13 @@ void Context::create_vulkan_instance_() {
   spdlog::trace("Vulkan instance created");
 }
 
+void Context::create_swapchain_() {
+  // TODO(caffeine): create swapchain w/ glfw
+}
+
 void Context::select_vulkan_physical_device_() {
   vkb::PhysicalDeviceSelector selector{vkb_instance_};
-  auto select_result = selector.select();
+  auto select_result = selector.defer_surface_initialization().select();
 
   if (!select_result) {
     const auto& error = select_result.error();

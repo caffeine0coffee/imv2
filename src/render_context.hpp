@@ -23,6 +23,7 @@ class Context {
   void destroy_();
 
   void create_vulkan_instance_();
+  void create_swapchain_();
   void select_vulkan_physical_device_();
   void create_vulkan_device_();
 
