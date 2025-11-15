@@ -2,8 +2,6 @@
 
 #include "src/render_context.hpp"
 
-#include <vulkan/vulkan.h>
-
 int main() {
   spdlog::info("Hello, World!");
 
