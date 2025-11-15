@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# This script checks the entire project using run_cpplint.sh.
+# Note that all arguments passed to this script are ignored.
+# If you want to check a single file or integrate with an editor,
+# use run_cpplint.sh directly.
+
+script_dir=$(readlink -f "$(dirname "$0")")
+project_dir=$(readlink -f "${script_dir}/..")
+
+"${script_dir}/run_cpplint.sh" \
+	--exclude='build_*' \
+	--exclude='vcpkg' \
+	--recursive \
+	"${project_dir}"

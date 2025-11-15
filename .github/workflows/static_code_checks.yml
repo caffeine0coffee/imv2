@@ -1,0 +1,25 @@
+name: static_code_checks
+on:
+  push:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Install devbox
+        run: curl -fsSL https://get.jetify.com/devbox | bash
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Run cppcheck and report
+        run: script/run_cppcheck_all.sh | reviewdog -efm="%f:%l:%c: %m" -name="cppcheck" -reporter="github-pr-check" -level="warning"
+
+      - name: Run cpplint and report
+        run: script/run_cpplint_all.sh | reviewdog -efm="%f:%l: %m" -name="cpplint" -reporter="github-pr-check" -level="warning"
