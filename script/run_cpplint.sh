@@ -1,3 +1,3 @@
 #!/bin/bash
 
-devbox run cpplint "$@"
+devbox run cpplint --linelength=120 "$@"
