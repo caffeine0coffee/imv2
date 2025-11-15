@@ -1,0 +1,17 @@
+{
+  "packages": {
+    "clang-tools": "21.1.1",
+    "cpplint": "2.0.2",
+    "cppcheck": "2.18.3"
+  },
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  }
+}
