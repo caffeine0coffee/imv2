@@ -1,0 +1,44 @@
+name: build_linux_and_report_warnings
+on:
+  pull_request:
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y \
+            ninja-build \
+            libvulkan-dev \
+            libxinerama-dev \
+            libxcursor-dev \
+            xorg-dev \
+            libglu1-mesa \
+            pkg-config
+
+      - name: CMake configuration
+        run: cmake --preset debug
+
+      - name: Build project and report warnings
+        run: |
+          cmake --build --preset debug | tee build_output.log
+
+      - name: Report compiler warnings via reviewdog
+        run: |
+          export REVIEWDOG_GITHUB_API_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          cat build_output.log | grep 'warning:' | reviewdog -efm="%f:%l:%c: %m" -name="linux_build" -reporter=github-pr-review -level="warning"

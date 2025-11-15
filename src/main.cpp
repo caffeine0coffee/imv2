@@ -11,6 +11,7 @@ int main() {
 
   const auto* const context = Context::Instance();
   const auto& vk_instance = context->vk_instance();
+
   spdlog::info("Context created!!!");
 
   return 0;
