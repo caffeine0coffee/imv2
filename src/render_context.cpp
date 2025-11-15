@@ -1,5 +1,6 @@
 #include "src/render_context.hpp"
 
+#include <GLFW/glfw3.h>
 #include <VkBootstrap.h>
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
@@ -11,6 +12,8 @@ const Context* Context::Instance() {
 
 void Context::init_() {
   create_vulkan_instance_();
+  create_glfw_window_();
+  create_vulkan_surface_();
   select_vulkan_physical_device_();
   create_vulkan_device_();
 }
@@ -18,6 +21,9 @@ void Context::init_() {
 void Context::destroy_() {
   vkb::destroy_device(vkb_device_);
   vkb::destroy_instance(vkb_instance_);
+
+  glfwDestroyWindow(glfw_window_);
+  glfwTerminate();
 }
 
 void Context::create_vulkan_instance_() {
@@ -37,6 +43,23 @@ void Context::create_vulkan_instance_() {
 
   spdlog::trace("Vulkan instance created");
 }
+
+void Context::create_glfw_window_() {
+  if (glfwInit() == GLFW_FALSE) {
+    throw std::runtime_error("Failed to initialize GLFW");
+  }
+
+  glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+  glfw_window_ = glfwCreateWindow(kInitialWindowWidth, kInitialWindowHeight,
+                                  "imv2", nullptr, nullptr);
+  if (glfw_window_ == nullptr) {
+    throw std::runtime_error("Failed to create GLFW window");
+  }
+
+  spdlog::trace("GLFW window created");
+}
+
+void Context::create_vulkan_surface_() {}
 
 void Context::create_swapchain_() {
   // TODO(caffeine): create swapchain w/ glfw
