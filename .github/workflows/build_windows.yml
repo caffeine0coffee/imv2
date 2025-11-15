@@ -1,0 +1,16 @@
+name: build_windows
+on:
+  push:
+  workflow_call:
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: CMake configuration
+        run: cmake --preset debug
+
+      - name: Build project
+        run: cmake --build --preset debug
