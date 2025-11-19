@@ -1,6 +1,6 @@
 #include <spdlog/spdlog.h>
 
-#include "src/render_context.hpp"
+#include "src/core/render_context.hpp"
 
 int main() {
   spdlog::info("Hello, World!");
