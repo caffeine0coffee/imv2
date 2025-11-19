@@ -13,4 +13,65 @@
 
 # 設計
 
-wip
+Context
+
+- Vulkan Instance
+- Device
+- Physical Device
+
+Renderer
+
+- RenderData
+    - Graphics Pipeline
+    - Render Pass
+    - Frame Buffer
+- Command Buffer
+- Descriptor Set
+- draw(scene, window)
+
+Window
+
+- GLFW Window
+- Input
+    - mouse input
+    - keyboard input
+- Surface
+- Swapchain
+
+Scene
+
+- Mesh[]
+- Camera
+    - view matrix
+    - projection matrix
+
+Mesh
+
+- Vertex[]
+- index list
+- Transformation
+    - offset
+    - rotation
+- submesh list: Mesh[]
+
+Vertex
+
+- x, y, z
+- color
+- model index (bone id)
+
+Application
+
+- Window
+- Renderer instance
+- Animator instance
+- etc...
+
+BVHModelLoader
+
+- load bvh file and generate Mesh
+
+Animator
+
+- manage animation time
+- generate model matrix
