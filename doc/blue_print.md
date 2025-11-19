@@ -74,4 +74,4 @@ BVHModelLoader
 Animator
 
 - manage animation time
-- generate model matrix
+- update Mesh transformations
