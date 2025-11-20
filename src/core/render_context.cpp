@@ -1,5 +1,7 @@
 #include "src/core/render_context.hpp"
 
+#include <memory>
+
 #define GLFW_INCLUDE_VULKAN
 
 #include <GLFW/glfw3.h>
@@ -7,22 +9,40 @@
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 
-const Context* Context::Instance() {
-  static Context instance;
-  return &instance;
+std::atomic<bool> Context::initialized_{false};
+std::mutex Context::instance_mutex_;
+std::unique_ptr<Context> Context::instance_ = nullptr;
+
+void Context::Init(vk::SurfaceKHR vk_surface) {
+  if (initialized_.exchange(true)) {
+    spdlog::warn("Context::Init() called more than once");
+    return;
+  }
+
+  std::lock_guard<std::mutex> lock(instance_mutex_);
+  assert(instance_ == nullptr && "Context instance already exists");
+
+  instance_ = std::unique_ptr<Context>(new Context(vk_surface));
 }
 
-void Context::init_() {
+const Context* Context::Instance() {
+  if (!initialized_) {
+    throw std::runtime_error("Context::Instance() called before Context::Init()");
+  }
+
+  std::lock_guard<std::mutex> lock(instance_mutex_);
+  return instance_.get();
+}
+
+void Context::init_(vk::SurfaceKHR vk_surface) {
   create_vulkan_instance_();
   create_glfw_window_();
-  create_vulkan_surface_();
-  select_vulkan_physical_device_();
+  select_vulkan_physical_device_(vk_surface);
   create_vulkan_device_();
 }
 
 void Context::destroy_() {
   vkb::destroy_device(vkb_device_);
-  vkb::destroy_surface(vkb_instance_, vk_surface_);
   vkb::destroy_instance(vkb_instance_);
 
   glfwDestroyWindow(glfw_window_);
@@ -61,19 +81,8 @@ void Context::create_glfw_window_() {
   spdlog::trace("GLFW window created");
 }
 
-void Context::create_vulkan_surface_() {
-  VkSurfaceKHR c_surface = VK_NULL_HANDLE;
-  const auto& result = glfwCreateWindowSurface(vk_instance_, glfw_window_, nullptr, &c_surface);
-  if (result != VK_SUCCESS) {
-    throw std::runtime_error("Failed to create Vulkan surface");
-  }
-  vk_surface_ = vk::SurfaceKHR(c_surface);
-
-  spdlog::trace("Vulkan surface created");
-}
-
-void Context::select_vulkan_physical_device_() {
-  vkb::PhysicalDeviceSelector selector{vkb_instance_, vk_surface_};
+void Context::select_vulkan_physical_device_(vk::SurfaceKHR vk_surface) {
+  vkb::PhysicalDeviceSelector selector{vkb_instance_, vk_surface};
   auto select_result = selector.select();
 
   if (!select_result) {

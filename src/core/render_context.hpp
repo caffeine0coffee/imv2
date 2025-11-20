@@ -1,5 +1,8 @@
 #pragma once
 
+#include <atomic>
+#include <memory>
+
 #define GLFW_INCLUDE_VULKAN
 
 #include <GLFW/glfw3.h>
@@ -9,6 +12,7 @@
 
 class Context {
  public:
+  static void Init(vk::SurfaceKHR vk_surface);
   static const Context* Instance();
 
   ~Context() { destroy_(); }
@@ -20,16 +24,20 @@ class Context {
   [[nodiscard]] const vk::Instance& vk_instance() const { return vk_instance_; }
 
  private:
-  Context() { init_(); }
+  static std::atomic<bool> initialized_;
+  static std::mutex instance_mutex_;
+  static std::unique_ptr<Context> instance_;
 
-  void init_();
+  explicit Context(vk::SurfaceKHR vk_surface) { init_(vk_surface); }
+
+  void init_(vk::SurfaceKHR vk_surface);
   void destroy_();
 
   void create_vulkan_instance_();
   void create_glfw_window_();
   void create_vulkan_surface_();
   void create_swapchain_();
-  void select_vulkan_physical_device_();
+  void select_vulkan_physical_device_(vk::SurfaceKHR vk_surface);
   void create_vulkan_device_();
 
   const int kInitialWindowWidth = 800;
@@ -45,5 +53,4 @@ class Context {
   vk::Device vk_device_;
 
   GLFWwindow* glfw_window_ = nullptr;
-  vk::SurfaceKHR vk_surface_;
 };
