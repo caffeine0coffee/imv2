@@ -3,7 +3,7 @@
 #include "src/core/render_context.hpp"
 
 int main() {
-  spdlog::info("Hello, World!");
+  spdlog::info("Starting application...");
 
 #ifdef DEBUG
   spdlog::set_level(spdlog::level::trace);
