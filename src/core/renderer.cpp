@@ -55,7 +55,7 @@ void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
   vkb_physical_device_ = select_result.value();
   vk_physical_device_ = vkb_physical_device_.physical_device;
 
-  spdlog::trace("Vulkan physical device created");
+  spdlog::trace("Vulkan physical device selected");
 
   vkb::DeviceBuilder device_builder{vkb_physical_device_};
   auto device_result = device_builder.build();
