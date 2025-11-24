@@ -114,6 +114,7 @@ Renderer* Renderer::Instance() {
 }
 
 void Renderer::draw() {
+  // TODO(caffeine): Implement rendering logic here.
   const auto vk_instance = context_->vk_instance();  // NOLINT
   const auto vk_device = context_->vk_device();  // NOLINT
 
