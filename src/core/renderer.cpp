@@ -11,7 +11,7 @@
 
 void Renderer::Context::init_vulkan_instance() {
   if (is_instance_initialized_.exchange(true)) {
-    spdlog::warn("Context::init_vulkan_instance() called more than once");
+    spdlog::warn("Context::init_vulkan_instance() called more than once.");
     return;
   }
 
@@ -22,7 +22,7 @@ void Renderer::Context::init_vulkan_instance() {
                           .build();
   if (!build_result) {
     const auto& error = build_result.error();
-    throw std::runtime_error(fmt::format("Failed to create Vulkan instance: {}", error.message()));
+    throw std::runtime_error(fmt::format("Failed to create Vulkan instance: {}.", error.message()));
   }
 
   vkb_instance_ = build_result.value();
@@ -30,17 +30,17 @@ void Renderer::Context::init_vulkan_instance() {
 
   is_instance_initialized_ = true;
 
-  spdlog::trace("Vulkan instance created");
+  spdlog::trace("Vulkan instance created.");
 }
 
 void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
   if (is_device_initialized_.exchange(true)) {
-    spdlog::warn("Context::init_vulkan_device() called more than once");
+    spdlog::warn("Context::init_vulkan_device() called more than once.");
     return;
   }
   if (!is_instance_initialized_) {
     throw std::runtime_error(
-        "Vulkan instance must be initialized before initializing Vulkan device"
+        "Vulkan instance must be initialized before initializing Vulkan device."
         "Call init_vulkan_instance() first.");
   }
 
@@ -49,19 +49,19 @@ void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
 
   if (!select_result) {
     const auto& error = select_result.error();
-    throw std::runtime_error(fmt::format("Failed to select physical device: {}", error.message()));
+    throw std::runtime_error(fmt::format("Failed to select physical device: {}.", error.message()));
   }
 
   vkb_physical_device_ = select_result.value();
   vk_physical_device_ = vkb_physical_device_.physical_device;
 
-  spdlog::trace("Vulkan physical device selected");
+  spdlog::trace("Vulkan physical device selected.");
 
   vkb::DeviceBuilder device_builder{vkb_physical_device_};
   auto device_result = device_builder.build();
 
   if (!device_result) {
-    throw std::runtime_error("Failed to create logical device");
+    throw std::runtime_error("Failed to create logical device.");
   }
 
   vkb_device_ = device_result.value();
@@ -69,7 +69,7 @@ void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
 
   is_device_initialized_ = true;
 
-  spdlog::trace("Vulkan device created");
+  spdlog::trace("Vulkan device created.");
 }
 
 vk::Instance Renderer::Context::vk_instance() const {
@@ -96,10 +96,10 @@ vk::Device Renderer::Context::vk_device() const {
 
 void Renderer::Context::destroy_() {
   vkb::destroy_device(vkb_device_);
-  spdlog::trace("Vulkan device destroyed");
+  spdlog::trace("Vulkan device destroyed.");
 
   vkb::destroy_instance(vkb_instance_);
-  spdlog::trace("Vulkan instance destroyed");
+  spdlog::trace("Vulkan instance destroyed.");
 }
 
 void Renderer::InitVulkanInstance() { Renderer::Instance()->context_->init_vulkan_instance(); }
@@ -117,5 +117,5 @@ void Renderer::draw() {
   const auto vk_instance = context_->vk_instance();  // NOLINT
   const auto vk_device = context_->vk_device();  // NOLINT
 
-  spdlog::info("Renderer::draw() called");
+  spdlog::info("Renderer::draw() called.");
 }
