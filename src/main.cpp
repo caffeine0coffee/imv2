@@ -1,18 +1,28 @@
+#include <cstdlib>
+#include <memory>
+
+#define GLFW_INCLUDE_VULKAN
+
+#include <GLFW/glfw3.h>
 #include <spdlog/spdlog.h>
 
-#include "src/render_context.hpp"
+#include <vulkan/vulkan.hpp>
+
+#include "src/core/renderer.hpp"
+#include "src/window.hpp"
 
 int main() {
-  spdlog::info("Hello, World!");
+  spdlog::info("Starting application...");
 
 #ifdef DEBUG
   spdlog::set_level(spdlog::level::trace);
 #endif
 
-  const auto* const context = Context::Instance();
-  const auto& vk_instance = context->vk_instance();
+  Renderer::InitVulkanInstance();
+  const auto window = std::make_unique<Window>();
+  Renderer::InitVulkanDevice(window->vk_surface());
 
-  spdlog::info("Context created!!!");
+  Renderer::Instance()->draw();
 
-  return 0;
+  return EXIT_SUCCESS;
 }
