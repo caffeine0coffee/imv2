@@ -40,7 +40,7 @@ void Window::create_glfw_window_() {
 }
 
 void Window::create_vulkan_surface_() {
-  VkSurfaceKHR surface = nullptr;
+  VkSurfaceKHR surface = VK_NULL_HANDLE;
   glfwCreateWindowSurface(Renderer::Instance()->vk_instance(), glfw_window_, nullptr, &surface);
 
   vk_surface_ = static_cast<vk::SurfaceKHR>(surface);
