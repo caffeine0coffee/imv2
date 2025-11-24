@@ -1,6 +1,15 @@
+#include <cstdlib>
+#include <memory>
+
+#define GLFW_INCLUDE_VULKAN
+
+#include <GLFW/glfw3.h>
 #include <spdlog/spdlog.h>
 
+#include <vulkan/vulkan.hpp>
+
 #include "src/core/renderer.hpp"
+#include "src/window.hpp"
 
 int main() {
   spdlog::info("Starting application...");
@@ -9,13 +18,11 @@ int main() {
   spdlog::set_level(spdlog::level::trace);
 #endif
 
-  // TODO(caffeine): create GLFW Window and initialize Context with its surface
+  Renderer::InitVulkanInstance();
+  const auto window = std::make_unique<Window>();
+  Renderer::InitVulkanDevice(window->vk_surface());
 
-  spdlog::trace("GLFW window created");
+  Renderer::Instance()->draw();
 
-  const auto* const renderer = Renderer::Instance();
-
-  spdlog::info("Context created!!!");
-
-  return 0;
+  return EXIT_SUCCESS;
 }

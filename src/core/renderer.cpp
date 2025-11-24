@@ -108,7 +108,14 @@ void Renderer::InitVulkanDevice(vk::SurfaceKHR vk_surface) {
   Renderer::Instance()->context_->init_vulkan_device(static_cast<VkSurfaceKHR>(vk_surface));
 }
 
-const Renderer* Renderer::Instance() {
+Renderer* Renderer::Instance() {
   static Renderer instance;
   return &instance;
+}
+
+void Renderer::draw() {
+  const auto vk_instance = context_->vk_instance();  // NOLINT
+  const auto vk_device = context_->vk_device();  // NOLINT
+
+  spdlog::info("Renderer::draw() called");
 }

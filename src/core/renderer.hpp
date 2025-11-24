@@ -46,14 +46,18 @@ class Renderer {
  public:
   static void InitVulkanInstance();
   static void InitVulkanDevice(vk::SurfaceKHR vk_surface);
-  static const Renderer* Instance();
+  static Renderer* Instance();
 
   ~Renderer() = default;
-  Renderer() = default;
+  Renderer() : context_(std::make_unique<Context>()) {}
   Renderer(const Renderer&) = delete;
   Renderer(Renderer&&) = delete;
   Renderer& operator=(const Renderer&) = delete;
   Renderer& operator=(Renderer&&) = delete;
+
+  void draw();
+
+  [[nodiscard]] vk::Instance vk_instance() const { return context_->vk_instance(); }
 
  private:
   std::unique_ptr<Context> context_;
