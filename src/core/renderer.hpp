@@ -56,8 +56,5 @@ class Renderer {
   Renderer& operator=(Renderer&&) = delete;
 
  private:
-  const int kInitialWindowWidth = 800;
-  const int kInitialWindowHeight = 600;
-
   std::unique_ptr<Context> context_;
 };
