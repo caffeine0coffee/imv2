@@ -1,6 +1,6 @@
 #include <spdlog/spdlog.h>
 
-#include "src/core/render_context.hpp"
+#include "src/core/renderer.hpp"
 
 int main() {
   spdlog::info("Starting application...");
@@ -11,8 +11,9 @@ int main() {
 
   // TODO(caffeine): create GLFW Window and initialize Context with its surface
 
-  const auto* const context = Context::Instance();
-  const auto& vk_instance = context->vk_instance();
+  spdlog::trace("GLFW window created");
+
+  const auto* const renderer = Renderer::Instance();
 
   spdlog::info("Context created!!!");
 
