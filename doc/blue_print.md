@@ -13,14 +13,14 @@
 
 # 設計
 
-Context
+Renderer
 
+- init_vulkan_instance()
+- init_vulkan_device(vk_surface)
+- init_renderer()  // vulkan instanceとvulkan deviceを先に初期化しないとエラー
 - Vulkan Instance
 - Device
 - Physical Device
-
-Renderer
-
 - RenderData
     - Graphics Pipeline
     - Render Pass
