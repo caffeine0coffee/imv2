@@ -40,7 +40,7 @@ void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
   }
   if (!is_instance_initialized_) {
     throw std::runtime_error(
-        "Vulkan instance must be initialized before initializing Vulkan device."
+        "Vulkan instance must be initialized before initializing Vulkan device. "
         "Call init_vulkan_instance() first.");
   }
 
