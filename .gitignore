@@ -44,6 +44,7 @@
 build_develop/
 build_debug/
 build_release/
+build_conan/
 
 vcpkg_installed/
 .idea/
