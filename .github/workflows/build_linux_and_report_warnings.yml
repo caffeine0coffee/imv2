@@ -31,12 +31,8 @@ jobs:
             libglu1-mesa \
             pkg-config
 
-      - name: CMake configuration
-        run: cmake --preset debug
-
       - name: Build project and report warnings
-        run: |
-          cmake --build --preset debug | tee build_output.log
+        run: script/build.sh | tee build_output.log
 
       - name: Report compiler warnings via reviewdog
         run: |
