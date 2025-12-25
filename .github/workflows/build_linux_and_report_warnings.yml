@@ -18,9 +18,11 @@ jobs:
         with:
           reviewdog_version: latest
 
-      - name: Install Conan
+      - name: Setup Conan
         run: |
+          set -euo pipefail
           pipx install conan
+          conan profile detect --force
 
       - name: Install dependencies
         run: |
