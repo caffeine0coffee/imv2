@@ -32,9 +32,12 @@ jobs:
             pkg-config
 
       - name: Build project and report warnings
-        run: script/build.sh | tee build_output.log
+        run: |
+          set -euo pipefail
+          script/build.sh | tee build_output.log
 
       - name: Report compiler warnings via reviewdog
         run: |
+          set -euo pipefail
           export REVIEWDOG_GITHUB_API_TOKEN="${{ secrets.GITHUB_TOKEN }}"
           cat build_output.log | grep 'warning:' | reviewdog -efm="%f:%l:%c: %m" -name="linux_build" -reporter=github-pr-review -level="warning"
