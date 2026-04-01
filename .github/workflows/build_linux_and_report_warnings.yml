@@ -37,10 +37,14 @@ jobs:
             libglu1-mesa \
             pkg-config
 
+      - name: Install conan cmake dependencies
+        run: ./script/conan_install.sh
+
       - name: Build project and report warnings
         run: |
           set -euo pipefail
-          script/build.sh | tee build_output.log
+          cmake --preset debug
+          cmake --build --preset debug | tee build_output.log
 
       - name: Report compiler warnings via reviewdog
         run: |
