@@ -10,7 +10,7 @@
 #include <spdlog/spdlog.h>
 
 void Renderer::Context::init_vulkan_instance() {
-  if (is_instance_initialized_.exchange(true)) {
+  if (is_instance_initialized_.load()) {
     spdlog::warn("Context::init_vulkan_instance() called more than once.");
     return;
   }
