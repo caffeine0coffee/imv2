@@ -81,14 +81,14 @@ vk::Instance Renderer::Context::vk_instance() const {
 }
 
 vk::PhysicalDevice Renderer::Context::vk_physical_device() const {
-  if (!is_device_initialized_) {
+  if (!is_device_initialized_.load()) {
     throw std::runtime_error("Vulkan device is not initialized. Call init_vulkan_device() first.");
   }
   return vk_physical_device_;
 }
 
 vk::Device Renderer::Context::vk_device() const {
-  if (!is_device_initialized_) {
+  if (!is_device_initialized_.load()) {
     throw std::runtime_error("Vulkan device is not initialized. Call init_vulkan_device() first.");
   }
   return vk_device_;
