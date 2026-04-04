@@ -38,7 +38,7 @@ void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
     spdlog::warn("Context::init_vulkan_device() called more than once.");
     return;
   }
-  if (!is_instance_initialized_) {
+  if (!is_instance_initialized_.load()) {
     throw std::runtime_error(
         "Vulkan instance must be initialized before initializing Vulkan device. "
         "Call init_vulkan_instance() first.");
