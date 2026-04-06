@@ -26,7 +26,7 @@ void Context::destroy_() {
   vkb::destroy_instance(vkb_instance_);
 
   glfwDestroyWindow(glfw_window_);
-  glfwTerminate();
+  spdlog::trace("GLFW window destroyed.");
 }
 
 void Context::create_vulkan_instance_() {
@@ -47,10 +47,6 @@ void Context::create_vulkan_instance_() {
 }
 
 void Context::create_glfw_window_() {
-  if (glfwInit() == GLFW_FALSE) {
-    throw std::runtime_error("Failed to initialize GLFW");
-  }
-
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
   glfw_window_ =
       glfwCreateWindow(kInitialWindowWidth, kInitialWindowHeight, "imv2", nullptr, nullptr);
