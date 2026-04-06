@@ -4,11 +4,9 @@
 # To make this agent available, merge this file into the default repository branch.
 # For format details, see: https://gh.io/customagents/config
 
-name:
-description:
+name: agent-jp
+description: 日本語で回答を行うAgent
 ---
 
-# My Agent
-
-回答は日本語で行って下さい。
-ただし、ソースコードはコメント文含めて全て英語で記載して下さい。
+チャットやエージェントモードにおける回答は日本語で行って下さい。
+ソースコードはコメント文含め全て英語で記載して下さい。
