@@ -23,14 +23,14 @@ file(GLOB_RECURSE imv_sources src/*.cpp)
 add_executable(imv2 ${imv_sources})
 target_include_directories(imv2 PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 
-find_package(spdlog CONFIG REQUIRED)
+find_package(spdlog REQUIRED)
 target_link_libraries(imv2 PRIVATE spdlog::spdlog)
 
-find_package(vk-bootstrap CONFIG REQUIRED)
-target_link_libraries(imv2 PRIVATE vk-bootstrap::vk-bootstrap vk-bootstrap::vk-bootstrap-compiler-warnings)
+find_package(vk-bootstrap REQUIRED)
+target_link_libraries(imv2 PRIVATE vk-bootstrap::vk-bootstrap)
 
 find_package(Vulkan REQUIRED)
 target_link_libraries(imv2 PRIVATE Vulkan::Vulkan)
 
-find_package(glfw3 CONFIG REQUIRED)
+find_package(glfw3 REQUIRED)
 target_link_libraries(imv2 PRIVATE glfw)

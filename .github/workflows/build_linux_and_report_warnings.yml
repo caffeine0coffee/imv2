@@ -18,6 +18,12 @@ jobs:
         with:
           reviewdog_version: latest
 
+      - name: Setup Conan
+        run: |
+          set -euo pipefail
+          pipx install conan
+          conan profile detect --force
+
       - name: Install dependencies
         run: |
           set -euo pipefail
@@ -29,16 +35,44 @@ jobs:
             libxcursor-dev \
             xorg-dev \
             libglu1-mesa \
-            pkg-config
+            pkg-config \
+            libx11-xcb-dev \
+            libxcb-composite0-dev \
+            libxcb-cursor-dev \
+            libxcb-dri2-0-dev \
+            libxcb-dri3-dev \
+            libxcb-ewmh-dev \
+            libxcb-glx0-dev \
+            libxcb-icccm4-dev \
+            libxcb-image0-dev \
+            libxcb-keysyms1-dev \
+            libxcb-present-dev \
+            libxcb-randr0-dev \
+            libxcb-render-util0-dev \
+            libxcb-render0-dev \
+            libxcb-res0-dev \
+            libxcb-shape0-dev \
+            libxcb-sync-dev \
+            libxcb-util-dev \
+            libxcb-util0-dev \
+            libxcb-xfixes0-dev \
+            libxcb-xinerama0-dev \
+            libxcb-xkb-dev
 
-      - name: CMake configuration
-        run: cmake --preset debug
+      - name: Install conan cmake dependencies
+        run: ./script/conan_install.sh
 
       - name: Build project and report warnings
         run: |
+          set -euo pipefail
+          cmake --preset debug
           cmake --build --preset debug | tee build_output.log
 
       - name: Report compiler warnings via reviewdog
         run: |
+          set -euo pipefail
           export REVIEWDOG_GITHUB_API_TOKEN="${{ secrets.GITHUB_TOKEN }}"
-          cat build_output.log | grep 'warning:' | reviewdog -efm="%f:%l:%c: %m" -name="linux_build" -reporter=github-pr-review -level="warning"
+          grep 'warning:' build_output.log > warnings.log || true
+          if [ -s warnings.log ]; then
+            reviewdog -efm="%f:%l:%c: %m" -name="linux_build" -reporter=github-pr-review -level="warning" < warnings.log
+          fi
