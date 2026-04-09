@@ -34,7 +34,7 @@ void Renderer::Context::init_vulkan_instance() {
 }
 
 void Renderer::Context::init_vulkan_device(VkSurfaceKHR vk_surface) {
-  if (is_device_initialized_.exchange(true)) {
+  if (is_device_initialized_.load()) {
     spdlog::warn("Context::init_vulkan_device() called more than once.");
     return;
   }
