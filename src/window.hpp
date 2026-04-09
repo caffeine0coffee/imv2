@@ -9,9 +9,9 @@
 class Window {
  public:
   Window() { init_(); }
-  Window(const Window&) = default;
+  Window(const Window&) = delete;
   Window(Window&&) = delete;
-  Window& operator=(const Window&) = default;
+  Window& operator=(const Window&) = delete;
   Window& operator=(Window&&) = delete;
   ~Window() { destroy_(); }
 
